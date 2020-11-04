@@ -55,14 +55,14 @@ public class CoffeeMakerTest {
     * */
 
     @Test
-    public void testAddInvalidAmounthOfMilk() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException {
+    public void testUseInvalidAmounthOfMilk() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException {
         int maxMilk = CM.checkMilkInventory();
         r1.setAmtMilk(maxMilk + 1);
         boolean ok = CM.addRecipe(r1);
         assertThrows(InventoryException.class, () -> CM.makeCoffee(r1.getName(), r1.getPrice()));
     }
     @Test
-    public void testAddInvalidAmounthOfCoffe() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException {
+    public void testUseInvalidAmounthOfCoffe() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException {
         int maxCoffe = CM.checkCoffeeInventory();
         r1.setAmtMilk(maxCoffe + 1);
         boolean ok = CM.addRecipe(r1);
@@ -70,7 +70,7 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testAddInvalidAmounthOfSuggar() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException {
+    public void testUseInvalidAmounthOfSuggar() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException {
         int maxSuggar = CM.checkSugarInventory();
         r1.setAmtMilk(maxSuggar + 1);
         boolean ok = CM.addRecipe(r1);
@@ -78,7 +78,7 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testAddInvalidAmounthOfSChocolate() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException, InventoryException, RecipeException {
+    public void testUseInvalidAmounthOfSChocolate() throws AmountOfRecipeException, DuplicatedRecipeException, InvalidValueException, InventoryException, RecipeException {
         int maxChocolate = CM.checkChocolateInventory();
         r1.setAmtMilk(maxChocolate + 1);
         boolean ok = CM.addRecipe(r1);
@@ -118,8 +118,13 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testAddInvalidCoffeeInventory() throws InvalidValueException{
+    public void testAddInvalidNegativeAmtCoffeeInventory() throws InvalidValueException{
         assertThrows(InvalidValueException.class, () -> CM.addCoffeeInventory(-10));
+    }
+
+    @Test
+    public void testAddInvalidPositiveAmtCoffeInventory() throws InvalidValueException{
+        assertThrows(InvalidValueException.class, () -> CM.addCoffeeInventory(200));
     }
 
     @Test
@@ -130,8 +135,13 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testAddInvalidMilkInventory() throws InvalidValueException{
+    public void testAddInvalidNegativeAmtMilkInventory() throws InvalidValueException{
         assertThrows(InvalidValueException.class, () -> CM.addMilkInventory(-10));
+    }
+
+    @Test
+    public void testAddInvalidPositiveAmtMilkInventory() throws InvalidValueException{
+        assertThrows(InvalidValueException.class, () -> CM.addMilkInventory(200));
     }
 
     @Test
@@ -142,8 +152,13 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testAddInvalidChocolateInventory() throws InvalidValueException{
+    public void testAddInvalidNegativeAmtChocolateInventory() throws InvalidValueException{
         assertThrows(InvalidValueException.class, () -> CM.addChocolateInventory(-10));
+    }
+
+    @Test
+    public void testAddInvalidPositiveAmtChocolateInventory() throws InvalidValueException{
+        assertThrows(InvalidValueException.class, () -> CM.addChocolateInventory(200));
     }
 
     @Test
@@ -154,10 +169,14 @@ public class CoffeeMakerTest {
     }
 
     @Test
-    public void testAddInvalidSugarInventory() throws InvalidValueException{
+    public void testAddInvalidNegativeAmtSugarInventory() throws InvalidValueException{
         assertThrows(InvalidValueException.class, () -> CM.addSugarInventory(-10));
     }
 
+    @Test
+    public void testAddInvalidPositiveAmtSugarInventory() throws InvalidValueException{
+        assertThrows(InvalidValueException.class, () -> CM.addSugarInventory(200));
+    }
     /*
     *  Test check inventory nao sei se é teste válido
     * */
